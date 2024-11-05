@@ -36,6 +36,27 @@ export default function Home() {
       <h1>Jogo da Forca</h1>
       <p>Erros: {errors} / 5</p>
       <p>{wordSpaces}</p>
+
+      <div>
+        {alphabet.map((letter) => (
+          <button
+            key={letter}
+            disabled={tryOuts.includes(letter)}
+            style={{
+              margin: '5px',
+              padding: '5px',
+              borderRadius: '5px',
+              border: 'none',
+              width: '40px',
+              height: '40px',
+              backgroundColor: tryOuts.includes(letter) ? '#ccc' : '#007bff',
+              cursor: tryOuts.includes(letter) ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {letter.toUpperCase()}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
