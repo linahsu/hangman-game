@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import  Image from 'next/image';
 import axios from "axios";
 import styles from "./page.module.css";
+import { AlphabetBoard, Errors, HangmanImageContainer, NewWordButton, Word} from "./ui/styles";
 
 interface WordsResponse {
   randomWord: string,
@@ -51,7 +52,7 @@ export default function Home() {
 
     const newWordSpaces = wordSpaces.split('');
     indexes.forEach((index: number) => {
-      newWordSpaces[index] = letter;
+      newWordSpaces[index] = letter.toLocaleUpperCase();
     });
 
     setWordSpaces(newWordSpaces.join(''));
@@ -70,13 +71,17 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <h1>Jogo da Forca</h1>
-      <Image src={hangmanImages[errors]} alt="Forca-0" width={200} height={300} />
-      <p>Erros: {errors} / 6</p>
-      <p>{wordSpaces}</p>
+    
+      <HangmanImageContainer>
+        <Image src={hangmanImages[errors]} alt="Forca-0" width={150} height={220} />
+        <Errors>{errors} / 6</Errors>
+      </HangmanImageContainer>
+
+      <Word>{wordSpaces}</Word>
 
 
       {!gameOver && (
-        <div>
+        <AlphabetBoard>
           {alphabet.map((letter) => (
             <button
               key={letter}
@@ -87,8 +92,9 @@ export default function Home() {
                 padding: '5px',
                 borderRadius: '5px',
                 border: 'none',
-                width: '40px',
-                height: '40px',
+                width: '90px',
+                height: '90px',
+                fontSize: '30px',
                 backgroundColor: tryOuts.includes(letter) ? '#ffa7da' : '#16a881',
                 cursor: tryOuts.includes(letter) ? 'not-allowed' : 'pointer',
               }}
@@ -96,7 +102,7 @@ export default function Home() {
               {letter.toUpperCase()}
             </button>
           ))}
-        </div>
+        </AlphabetBoard>
       )}
 
       {won && (
@@ -111,7 +117,7 @@ export default function Home() {
         </div>
       )}
 
-      <button onClick={() => newWord()}>Nova Palavra</button>
+      <NewWordButton onClick={() => newWord()}>Nova Palavra</NewWordButton>
     </div>
   );
 }
