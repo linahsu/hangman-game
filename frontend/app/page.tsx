@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import  Image from 'next/image';
 import axios from "axios";
 import styles from "./page.module.css";
-import { AlphabetBoard, Errors, HangmanImageContainer, Word} from "./ui/styles";
+import { AlphabetBoard, Errors, HangmanImageContainer, LostContainer, WonContainer, Word} from "./ui/styles";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 
@@ -60,7 +60,7 @@ export default function Home() {
     setWordSpaces(newWordSpaces.join(''));
     setTryOuts([...tryOuts, letter]);
 
-    if (newWordSpaces.join('') === word) {
+    if (newWordSpaces.join('') === word.toUpperCase()) {
       setWon(true);
       setGameOver(true);
     } 
@@ -79,8 +79,7 @@ export default function Home() {
         <Errors>{errors} / 6</Errors>
       </HangmanImageContainer>
       
-      <Word>{wordSpaces}</Word>
-
+      <Word>{wordSpaces.split('').join(' ')}</Word>
 
       {!gameOver && (
         <AlphabetBoard>
@@ -108,16 +107,17 @@ export default function Home() {
       )}
 
       {won && (
-        <div>
-          <p>Meus parabéns! Você ganhou!</p>
-        </div>
+        <WonContainer>
+          <p>Meus parabéns! Você acertou!</p>
+        </WonContainer>
       )}
 
       {lost && (
-        <div>
-          <p>Você perdeu!</p>
-          <p>Resposta: {word.toLocaleUpperCase()}</p>
-        </div>
+        <LostContainer>
+          <p>Que pena... Não foi desta vez...</p><br/>
+          <p>Tente novamente!</p><br/>
+          <p>Resposta: {word}</p>
+        </LostContainer>
       )}
       
       <Footer />

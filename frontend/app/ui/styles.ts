@@ -51,3 +51,28 @@ export const AlphabetBoard = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 `;
+
+export const WonContainer = styled.div`
+    width: 40%;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #30dfb0;
+    padding: 80px;
+    border-radius: 20px;
+`;
+
+export const LostContainer = styled.div`
+    width: 40%;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #ff4d4d;
+    padding: 50px;
+    border-radius: 20px;
+`;
