@@ -21,3 +21,5 @@ Route.get('/', () => {
 })
 
 Route.get('/word', 'HangmanController.getRandomWord')
+
+Route.post('/validate', 'HangmanController.validadeLetter')
