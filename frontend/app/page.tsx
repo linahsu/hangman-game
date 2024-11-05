@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import  Image from 'next/image';
 import axios from "axios";
 import styles from "./page.module.css";
-import { error } from "console";
 
 interface WordsResponse {
   randomWord: string,
@@ -12,6 +11,7 @@ interface WordsResponse {
 
 // Lista com todas as letras do alfabeto
 const alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+// Imagens da forca
 const hangmanImages: string[] = ['/hangman-0.png', '/hangman-1.png', '/hangman-2.png', '/hangman-3.png', '/hangman-4.png', '/hangman-5.png', '/hangman-6.png'];
 
 export default function Home() {
@@ -99,9 +99,17 @@ export default function Home() {
         </div>
       )}
 
-      {won && <p>Você ganhou!</p>}
+      {won && (
+        <div>
+          <p>Você ganhou!</p>
+        </div>
+      )}
 
-      {lost && <p>Você perdeu!</p>}
+      {lost && (
+        <div>
+          <p>Você perdeu!</p>
+        </div>
+      )}
 
       <button onClick={() => newWord()}>Nova Palavra</button>
     </div>
