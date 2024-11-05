@@ -1,7 +1,9 @@
 "use client"
 import { useState, useEffect } from "react";
+import  Image from 'next/image';
 import axios from "axios";
 import styles from "./page.module.css";
+import { error } from "console";
 
 interface WordsResponse {
   randomWord: string,
@@ -10,6 +12,7 @@ interface WordsResponse {
 
 // Lista com todas as letras do alfabeto
 const alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const hangmanImages: string[] = ['/hangman-0.png', '/hangman-1.png', '/hangman-2.png', '/hangman-3.png', '/hangman-4.png', '/hangman-5.png', '/hangman-6.png'];
 
 export default function Home() {
   const [word, setWord] = useState<string>('');
@@ -27,6 +30,9 @@ export default function Home() {
     setWordSpaces(response.data.wordSpaces);
     setTryOuts([]);
     setErrors(0);
+    setWon(false);
+    setLost(false);
+    setGameOver(false);
   };
 
   // Chama a função que gera uma nova palavra na renderização inicial
@@ -55,7 +61,7 @@ export default function Home() {
       setWon(true);
       setGameOver(true);
     } 
-    if (errors >= 4) {
+    if (errors >= 5) {
       setLost(true);
       setGameOver(true);
     }
@@ -64,7 +70,8 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <h1>Jogo da Forca</h1>
-      <p>Erros: {errors} / 5</p>
+      <Image src={hangmanImages[errors]} alt="Forca-0" width={200} height={300} />
+      <p>Erros: {errors} / 6</p>
       <p>{wordSpaces}</p>
 
 
@@ -82,7 +89,7 @@ export default function Home() {
                 border: 'none',
                 width: '40px',
                 height: '40px',
-                backgroundColor: tryOuts.includes(letter) ? '#ccc' : '#007bff',
+                backgroundColor: tryOuts.includes(letter) ? '#ffa7da' : '#16a881',
                 cursor: tryOuts.includes(letter) ? 'not-allowed' : 'pointer',
               }}
             >
@@ -95,6 +102,8 @@ export default function Home() {
       {won && <p>Você ganhou!</p>}
 
       {lost && <p>Você perdeu!</p>}
+
+      <button onClick={() => newWord()}>Nova Palavra</button>
     </div>
   );
 }
