@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import  Image from 'next/image';
 import axios from "axios";
 import styles from "./page.module.css";
-import { AlphabetBoard, Errors, HangmanImageContainer, NewWordButton, Word} from "./ui/styles";
+import { AlphabetBoard, Errors, HangmanImageContainer, Word} from "./ui/styles";
+import Footer from "./ui/Footer";
+import Header from "./ui/Header";
 
 interface WordsResponse {
   randomWord: string,
@@ -70,13 +72,13 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <h1>Jogo da Forca</h1>
+      <Header newWord={newWord}/>
     
       <HangmanImageContainer>
         <Image src={hangmanImages[errors]} alt="Forca-0" width={150} height={220} />
         <Errors>{errors} / 6</Errors>
       </HangmanImageContainer>
-
+      
       <Word>{wordSpaces}</Word>
 
 
@@ -88,9 +90,9 @@ export default function Home() {
               onClick={() => tryLetter(letter)}
               disabled={tryOuts.includes(letter)}
               style={{
-                margin: '5px',
+                margin: '7px',
                 padding: '5px',
-                borderRadius: '5px',
+                borderRadius: '10px',
                 border: 'none',
                 width: '90px',
                 height: '90px',
@@ -107,17 +109,18 @@ export default function Home() {
 
       {won && (
         <div>
-          <p>Você ganhou!</p>
+          <p>Meus parabéns! Você ganhou!</p>
         </div>
       )}
 
       {lost && (
         <div>
           <p>Você perdeu!</p>
+          <p>Resposta: {word.toLocaleUpperCase()}</p>
         </div>
       )}
-
-      <NewWordButton onClick={() => newWord()}>Nova Palavra</NewWordButton>
+      
+      <Footer />
     </div>
   );
 }
