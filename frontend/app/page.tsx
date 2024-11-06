@@ -22,9 +22,11 @@ export default function Home() {
   const [wordSpaces, setWordSpaces] = useState<string>('');
   const [tryOuts, setTryOuts] = useState<string[]>([]);
   const [errors, setErrors] = useState<number>(0);
-  const [won, setWon] = useState<boolean>(false);
-  const [lost, setLost] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
+
+  // Define se o jogo foi vencido ou perdido, gerando um booleano com as comparações
+  const hasWon = wordSpaces === word.toUpperCase();
+  const hasLost = errors >= 6;
 
   // Função para buscar uma nova palavra e resetar os outros estados
   const newWord = async () => {
@@ -33,15 +35,14 @@ export default function Home() {
     setWordSpaces(response.data.wordSpaces);
     setTryOuts([]);
     setErrors(0);
-    setWon(false);
-    setLost(false);
     setGameOver(false);
   };
 
   // Chama a função que gera uma nova palavra na renderização inicial
   useEffect(() => {
-    newWord();
-  }, []);
+    if (!word) newWord();
+    if (hasWon || hasLost) setGameOver(true);
+  }, [word, hasWon, hasLost]);
 
   const tryLetter = async (letter: string) => {
     const response = await axios.post(
@@ -59,15 +60,6 @@ export default function Home() {
 
     setWordSpaces(newWordSpaces.join(''));
     setTryOuts([...tryOuts, letter]);
-
-    if (newWordSpaces.join('') === word.toUpperCase()) {
-      setWon(true);
-      setGameOver(true);
-    } 
-    if (errors >= 5) {
-      setLost(true);
-      setGameOver(true);
-    }
   };
 
   return (
@@ -75,7 +67,7 @@ export default function Home() {
       <Header newWord={newWord}/>
     
       <HangmanImageContainer>
-        <Image src={hangmanImages[errors]} alt="Forca-0" width={150} height={220} />
+        <Image src={hangmanImages[errors]} alt="Forca-0" width={150} height={220} priority/>
         <Errors>{errors} / 6</Errors>
       </HangmanImageContainer>
       
@@ -106,13 +98,13 @@ export default function Home() {
         </AlphabetBoard>
       )}
 
-      {won && (
+      {hasWon && (
         <WonContainer>
           <p>Meus parabéns! Você acertou!</p>
         </WonContainer>
       )}
 
-      {lost && (
+      {hasLost && (
         <LostContainer>
           <p>Que pena... Não foi desta vez...</p><br/>
           <p>Tente novamente!</p><br/>
