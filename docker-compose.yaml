@@ -8,8 +8,8 @@ services:
     restart: always
     ports:
       - "3333:3333"
-    volumes:
-      - ./backend:/backend
+    # volumes:
+    #   - ./backend:/backend
 
   frontend:
     build:
@@ -19,5 +19,5 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/frontend
+    # volumes:
+    #   - ./frontend:/frontend

@@ -12,11 +12,42 @@ Esta aplicação web contêm os seguintes elementos:
 - **Teclado interativo**: Escolha a letra desejada clicando nela.
 - **Mensagem de vitória ou perda ao fim do jogo**: Saiba quando for o fim do jogo com a mensagem personalizada.
 
-**link**: 
+## Executando o Projeto com Docker 🐋
 
-## Rodando o Projeto 💻
+⚠️ **É necessário ter o Docker instalado na sua máquina**
 
-⚠️ **É necessário uma versão Node igual ou superior à 20.0.0.**
+1 - Clone o repositório com o comando:
+
+```bash
+git clone git@github.com:linahsu/hangman-game.git
+```
+
+2 - Entre na pasta do projeto:
+
+```bash
+cd hangman-game
+```
+
+3 - Renomeio o arquivo **.env.example** para **.env** na raíz do projeto e certifique-se que as seguintes variáreis de ambiente estejam assim:
+
+```bash
+HOST=0.0.0.0
+PORT=3333
+```
+
+4 - Suba os containeres com o comando:
+
+```bash
+docker-compose up -d
+```
+
+5 - Abra **http://localhost:3000** com o seu navegador para visualizar o projeto rodando.
+
+</br>
+
+## Executando o Projeto Localmente 💻
+
+⚠️ **É necessário uma versão Node igual ou superior à 20**
 
 1 - Clone o repositório com o comando:
 
@@ -37,7 +68,7 @@ cd backend
 npm install
 ```
 
-4 - Rode o backend com o comando:
+4 - Execute o backend com o comando:
 
 ```bash
 adonis serve --dev
@@ -56,7 +87,7 @@ cd frontend
 npm install
 ```
 
-7 - Rode o frontend com o comando:
+7 - Execute o frontend com o comando:
 
 ```bash
 npm dev
