@@ -14,7 +14,6 @@ Esta aplicação web contêm os seguintes elementos:
 
 <img src="assets/tela-inicial.jpg" alt="tela inicial" width="450"/>
 <img src="assets/jogando.jpg" alt="jogando" width="450"/>
-</br>
 <img src="assets/vencendo.jpg" alt="vencendo" width="450"/>
 <img src="assets/perdendo.jpg" alt="perdendo" width="450"/>
 
