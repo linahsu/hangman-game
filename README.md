@@ -8,7 +8,7 @@ Esta aplicação web contêm os seguintes elementos:
 
 - **Header**: Com um botão para reiniciar o jogo com uma nova palavra.
 - **Imagem da forca e contador dos erros**: A imagem e o contador são atualizados a cada erro.
-- **Campos para cada letra da palavra**: Os campos das letras são atualizadas a cada letra acertada.
+- **Campos para cada letra da palavra**: Os campos das letras são atualizados a cada letra acertada.
 - **Teclado interativo**: Escolha a letra desejada clicando nela.
 - **Mensagem de vitória ou perda ao fim do jogo**: Saiba quando for o fim do jogo com a mensagem personalizada.
 
