@@ -12,6 +12,12 @@ Esta aplicação web contêm os seguintes elementos:
 - **Teclado interativo**: Escolha a letra desejada clicando nela.
 - **Mensagem de vitória ou perda ao fim do jogo**: Saiba quando for o fim do jogo com a mensagem personalizada.
 
+<img src="assets/tela-inicial.jpg" alt="tela inicial" width="450"/>
+<img src="assets/jogando.jpg" alt="jogando" width="450"/>
+</br>
+<img src="assets/vencendo.jpg" alt="vencendo" width="450"/>
+<img src="assets/perdendo.jpg" alt="perdendo" width="450"/>
+
 ## Executando o Projeto com Docker 🐋
 
 ⚠️ **É necessário ter o Docker instalado na sua máquina**
