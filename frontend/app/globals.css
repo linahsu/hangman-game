@@ -40,3 +40,17 @@ a {
     color-scheme: dark;
   }
 }
+
+.isLoadingContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.isLoadingContainer h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}

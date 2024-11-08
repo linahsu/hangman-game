@@ -18,6 +18,7 @@ const alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const hangmanImages: string[] = ['/hangman-0.png', '/hangman-1.png', '/hangman-2.png', '/hangman-3.png', '/hangman-4.png', '/hangman-5.png', '/hangman-6.png'];
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [word, setWord] = useState<string>('');
   const [wordSpaces, setWordSpaces] = useState<string>('');
   const [tryOuts, setTryOuts] = useState<string[]>([]);
@@ -42,6 +43,12 @@ export default function Home() {
   useEffect(() => {
     if (!word) newWord();
     if (hasWon || hasLost) setGameOver(true);
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, [word, hasWon, hasLost]);
 
   const tryLetter = async (letter: string) => {
@@ -61,6 +68,15 @@ export default function Home() {
     setWordSpaces(newWordSpaces.join(''));
     setTryOuts([...tryOuts, letter]);
   };
+
+  if (isLoading) {
+    return (
+      <div className="isLoadingContainer">
+        <h1>Prepare-se para jogar e se divertir!</h1>
+        <p>Carregando...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
