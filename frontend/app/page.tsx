@@ -62,7 +62,7 @@ export default function Home() {
 
     const newWordSpaces = wordSpaces.split('');
     indexes.forEach((index: number) => {
-      newWordSpaces[index] = letter.toLocaleUpperCase();
+      newWordSpaces[index] = word[index].toUpperCase();
     });
 
     setWordSpaces(newWordSpaces.join(''));
@@ -88,6 +88,7 @@ export default function Home() {
       </HangmanImageContainer>
       
       <Word>{wordSpaces.split('').join(' ')}</Word>
+      <p>{word}</p>
 
       {!gameOver && (
         <AlphabetBoard>

@@ -1,6 +1,17 @@
 'use strict'
 const { Word } = require('@andsfonseca/palavras-pt-br');
 
+function letterConverter (letter) {
+    let newLetter = letter;
+    if (['à', 'á', 'â', 'ã'].includes(letter)) newLetter = 'a';
+    if (['é', 'ê'].includes(letter)) newLetter = 'e';
+    if (['í'].includes(letter)) newLetter = 'i';
+    if (['ó', 'ô', 'õ'].includes(letter)) newLetter = 'o';
+    if (['ú'].includes(letter)) newLetter = 'u';
+    if (['ç'].includes(letter)) newLetter = 'c';
+    return newLetter;
+}
+
 class HangmanController {
     async getRandomWord({ response }) {
         const randomWord = Word.getRandomWord();
@@ -14,9 +25,11 @@ class HangmanController {
     async validadeLetter({ request, response }) {
         const { word, letter } = request.all();
         const indexes = [];
-
+            
         for (let index = 0; index < word.length; index += 1) {
-            if (word[index] === letter) {
+            const wordLetter = letterConverter(word[index]);
+            
+            if (wordLetter === letter) {
                 indexes.push(index);
             }
         }
