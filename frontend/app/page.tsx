@@ -51,6 +51,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [word, hasWon, hasLost]);
 
+  // Função para tentar uma letra, que chama a API de validação
   const tryLetter = async (letter: string) => {
     const response = await axios.post(
       'http://127.0.0.1:3333/validate',
@@ -69,6 +70,7 @@ export default function Home() {
     setTryOuts([...tryOuts, letter]);
   };
 
+  // Renderização condicional da página de acordo com o estado de Carregamento de 1,5 segundos
   if (isLoading) {
     return (
       <div className="isLoadingContainer">
@@ -88,7 +90,6 @@ export default function Home() {
       </HangmanImageContainer>
       
       <Word>{wordSpaces.split('').join(' ')}</Word>
-      <p>{word}</p>
 
       {!gameOver && (
         <AlphabetBoard>
